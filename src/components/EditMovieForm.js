@@ -20,11 +20,10 @@ const EditMovieForm = (props) => {
 	useEffect(() => {
 		axios.get(`http://localhost:9000/api/movies/${id}`)
 			.then(resp => {
-				// console.log(resp);
 				setMovie(resp.data)
 			})
 			.catch(err => {
-				console.log(err);
+				console.log(err.response);
 			})
 	}, []);
 
@@ -39,6 +38,7 @@ const EditMovieForm = (props) => {
         e.preventDefault();
         axios.put(`http://localhost:9000/api/movies/${id}`, movie)
             .then(res=>{
+				// console.log(res);
                 setMovies(res.data);
                 push(`/movies/${movie.id}`);
 			})
